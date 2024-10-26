@@ -49,8 +49,12 @@ jobs:
           channel: "stable"
           flutter-version: 3.19.1
 
-      
-      
+      - name: Create key.properties
+        run: echo "${{ secrets.KEY_PROPERTIES_BASE64 }}" | base64 --decode > ${{env.PROPERTIES_PATH}}
+
+      - name: Create key.jks
+        run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 --decode > ${{env.KEY_PATH}}
+
       - name: Get Flutter dependencies
         run: flutter pub get
 
